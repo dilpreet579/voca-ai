@@ -5,11 +5,9 @@ import NavbarDashboard from '@/components/NavbarDashboard';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import ParticleBackground from '@/components/ParticleBackground';
 import useAuth from '@/hooks/useAuth';
-import { useRouter } from 'next/navigation';
 
 export default function DashboardPage() {
   const { session, loading, authenticated } = useAuth({ required: true });
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [callStats, setCallStats] = useState({ totalCalls: 0, issuesSolved: 0 });
   

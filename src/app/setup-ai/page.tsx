@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -40,9 +39,14 @@ export default function SetupAIPage() {
       
       // Redirect to dashboard after successful setup
       router.push('/dashboard');
-    } catch (error: any) {
-      console.error('Error setting up AI:', error);
-      alert(`Error setting up AI: ${error.message || 'Something went wrong'}`);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error('Error setting up AI:', error);
+        alert(`Error setting up AI: ${error.message || 'Something went wrong'}`);
+      } else {
+        console.error('Error setting up AI:', error);
+        alert('Error setting up AI: Something went wrong');
+      }
     } finally {
       setIsSubmitting(false);
     }

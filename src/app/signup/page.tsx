@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
@@ -60,9 +60,14 @@ export default function SignupPage() {
         // Redirect to setup-ai page
         router.push('/setup-ai');
       }
-    } catch (error: any) {
-      setError(error.message || 'An error occurred during registration');
-      console.error('Registration error:', error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message || 'An error occurred during registration');
+        console.error('Registration error:', error);
+      } else {
+        setError('An error occurred during registration');
+        console.error('Registration error:', error);
+      }
     } finally {
       setIsSubmitting(false);
     }

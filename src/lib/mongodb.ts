@@ -19,6 +19,7 @@ interface MongooseCache {
 
 // Declare the global mongoose property
 declare global {
+  // eslint-disable-next-line no-var
   var mongoose: MongooseCache | undefined;
 }
 

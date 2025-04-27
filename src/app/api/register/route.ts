@@ -51,11 +51,19 @@ export async function POST(req: NextRequest) {
       },
       { status: 201 }
     );
-  } catch (error: any) {
-    console.error('Registration error:', error);
-    return NextResponse.json(
-      { error: error.message || 'Something went wrong' },
-      { status: 500 }
-    );
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Registration error:', error);
+      return NextResponse.json(
+        { error: error.message || 'Something went wrong' },
+        { status: 500 }
+      );
+    } else {
+      console.error('Registration error:', error);
+      return NextResponse.json(
+        { error: 'Something went wrong' },
+        { status: 500 }
+      );
+    }
   }
 }
