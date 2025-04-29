@@ -6,7 +6,10 @@ import { getToken } from 'next-auth/jwt';
 export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
   const isAuthenticated = !!token;
+  console.log('isAuthenticated', isAuthenticated);
+  console.log('token', token);
   
+
   // Define protected routes that require authentication
   const protectedRoutes = ['/dashboard', '/setup-ai'];
   
