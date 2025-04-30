@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-// import fs from 'fs/promises';
-// import path from 'path';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/lib/authOptions';
 import connectToDatabase from '@/lib/mongodb';
@@ -37,12 +35,14 @@ export async function POST(req: NextRequest) {
     const newSystemMessage = `You are an AI receptionist for ${companyName}. ${agentScript}`;
 
     // Send the new SYSTEM_MESSAGE to the OpenAI-Realtime-API backend
+    console.log(`Attempting to connect to: ${OPENAI_REALTIME_API_URL}/system-message`);
     const response = await fetch(`${OPENAI_REALTIME_API_URL}/system-message`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ systemMessage: newSystemMessage }),
     });
-
+    console.log(`Response received with status: ${response.status}`);
+    
     if (!response.ok) {
       const data = await response.json().catch(() => ({}));
       return NextResponse.json(
