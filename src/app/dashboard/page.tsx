@@ -79,7 +79,7 @@ export default function DashboardPage() {
                     </svg>
                   </div>
                   <h2 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">Your Allotted Number</h2>
-                  <p className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 mb-3">+1 (256) 634-6535</p>
+                  <p className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 mb-3">+1 (848) 361-3488</p>
                   <div className="p-3 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg mb-4">
                     <p className="text-sm text-gray-600 dark:text-gray-400 max-w-md">
                       This is your dedicated VocaAI phone number. Your customers can call this number to interact with your AI assistant.
@@ -87,7 +87,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="mt-4 flex justify-center w-full">
                     <a 
-                      href="tel:+12566346535" 
+                      href="tel:+18483619488" 
                       className="px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-lg shadow-md transition-all flex items-center justify-center"
                     >
                       <svg className="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
