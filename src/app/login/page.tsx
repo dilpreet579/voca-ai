@@ -133,6 +133,19 @@ export default function LoginPage() {
               </button>
             </div>
           </form>
+          <div className="flex items-center my-4">
+            <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+            <span className="mx-2 text-gray-400">or</span>
+            <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+          </div>
+          <button
+            type="button"
+            onClick={() => signIn('google')}
+            className="w-full flex items-center justify-center py-2 px-4 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm bg-white dark:bg-gray-700 text-gray-700 dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            <svg className="w-5 h-5 mr-2" viewBox="0 0 48 48"><g><path d="M44.5 20H24v8.5h11.7C34.7 33.1 29.8 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c2.7 0 5.2.9 7.2 2.4l6.4-6.4C34.1 5.1 29.3 3 24 3 12.9 3 4 11.9 4 23s8.9 20 20 20c11 0 19.7-8 19.7-20 0-1.3-.1-2.7-.2-4z" fill="#FFC107"/><path d="M6.3 14.7l7 5.1C15.1 17.1 19.2 14 24 14c2.7 0 5.2.9 7.2 2.4l6.4-6.4C34.1 5.1 29.3 3 24 3c-7.2 0-13.3 4.1-16.7 10.1z" fill="#FF3D00"/><path d="M24 43c5.6 0 10.3-1.8 13.7-4.9l-6.3-5.2C29.7 34.7 27 36 24 36c-5.7 0-10.5-3.7-12.2-8.8l-7 5.4C7.7 39.1 15.2 43 24 43z" fill="#4CAF50"/><path d="M44.5 20H24v8.5h11.7c-1.1 3.1-4.1 5.5-7.7 5.5-2.2 0-4.2-.7-5.7-2l-7 5.4C15.1 41.9 19.2 44 24 44c7.2 0 13.3-4.1 16.7-10.1z" fill="#1976D2"/></g></svg>
+            Sign in with Google
+          </button>
         </div>
       </main>
       <Footer />
