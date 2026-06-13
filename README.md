@@ -1,117 +1,173 @@
-# VocaAI Website
-
-VocaAI is a modern, AI-powered customer service platform that provides businesses with a smart, always-on voice agent. Built with Next.js, it integrates seamlessly with the OpenAI-Realtime-API backend for real-time voice interactions, appointment scheduling, and customer support automation.
-
----
-
-## 🚀 Features
-- Beautiful, responsive Next.js web app
-- User authentication and protected dashboard (NextAuth.js + MongoDB)
-- AI agent configuration (custom system prompt, business info, agent script)
-- Integration with OpenAI-Realtime-API for real-time voice and chat
-- Secure environment variable management
-- Modern UI/UX with Tailwind CSS
+# VocaAI - AI Receptionist
+An AI-powered virtual receptionist enabling 24/7 customer support and call automation.
 
 ---
 
-## 🛠️ Getting Started
+## 📖 Overview
+Many small businesses miss potential customers simply because nobody is available to answer every call. Missed inquiries often mean missed appointments, missed bookings, and lost revenue.
+
+VocaAI was built to solve that problem. It acts as an AI-powered receptionist that can answer incoming calls, respond to common customer questions, and remain available outside normal business hours.
+
+### The Problem
+Hiring and training reception staff can be expensive, especially for small businesses that receive recurring customer inquiries. Customers often call to ask the same questions:
+- What are your business hours?
+- Do you have availability?
+- How can I book an appointment?
+- What services do you offer?
+
+When these calls go unanswered, businesses lose opportunities.
+
+### The Solution
+VocaAI provides a voice-based AI receptionist capable of handling common customer interactions automatically. The system listens to incoming requests, understands customer intent, generates contextual responses, and replies in real time through a natural voice interface.
+
+---
+
+## 📁 Project Structure
+
+This repository contains both the frontend and backend applications:
+
+- [`/frontend`](./frontend): The Next.js web application for the user dashboard and AI setup.
+- [`/backend`](./backend): The Node.js/Fastify server handling real-time audio streaming between Twilio and OpenAI.
+
+---
+
+## 🚀 Key Features
+
+### Real-Time Voice Conversations
+- Natural voice-based interaction
+- Low-latency speech processing
+- Context-aware responses
+
+### Business Information Handling
+- Answers frequently asked questions
+- Provides service and availability information
+- Supports appointment and inquiry workflows
+
+### Business Dashboard (Frontend)
+- Call analytics and usage tracking
+- Secure authentication (NextAuth.js + MongoDB)
+- Conversation logging and monitoring
+- Easy-to-use interface to configure your business AI agent
+
+### Audio & AI Infrastructure (Backend)
+- Real-time audio streaming from Twilio to OpenAI Realtime API.
+- High-performance Fastify server with WebSocket endpoints.
+- Webhook Integrations to deliver structured data from calls to external services (e.g., Make.com).
+
+---
+
+## 🛠️ Technology Stack
+- Node.js
+- OpenAI-Realtime-API
+- Next.js
+- TypeScript
+- Fastify
+- Twilio
+- MongoDB
+- Tailwind CSS
+
+---
+
+## 🧠 Key Challenges & Learnings
+
+### Key Challenges
+- Maintaining low-latency voice conversations
+- Handling interruptions and conversational context correctly
+- Managing real-time audio streaming between client and model
+- Designing responses that feel natural and helpful
+- Building reliable business analytics around AI conversations
+
+### What I Learned
+- Designing voice-first AI experiences
+- Working with real-time multimodal AI systems
+- Managing streaming audio and low-latency communication
+- Balancing user experience with AI response quality
+- Turning LLM capabilities into practical business tools
+
+---
+
+## ⚙️ Getting Started
+
+To run the entire VocaAI platform locally, you will need to start both the backend and frontend servers.
 
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/dilpreet579/voca-ai.git
+cd voca-ai
 ```
 
-### 2. Install Dependencies
+### 2. Backend Setup
+
+Navigate to the backend directory and install dependencies:
 ```bash
+cd backend
 npm install
 ```
 
-### 3. Configure Environment Variables
-Create a `.env.local` file in the root directory with:
+Create a `.env` file in the `backend` directory:
+```env
+OPENAI_API_KEY=your_openai_api_key
+WEBHOOK_URL=https://your.webhook.url/endpoint
+PORT=3001
+```
+
+Start the backend server:
+```bash
+node index.js
+```
+
+### 3. Frontend Setup
+
+Open a new terminal, navigate to the frontend directory and install dependencies:
+```bash
+cd frontend
+npm install
+```
+
+Create a `.env.local` file in the `frontend` directory:
 ```env
 MONGODB_URI=your_mongodb_connection_string
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your_nextauth_secret_key
 OPENAI_REALTIME_API_URL=http://localhost:3001
 ```
-- `MONGODB_URI`: Your MongoDB connection string (local or Atlas)
-- `NEXTAUTH_URL`: The base URL of your app
-- `NEXTAUTH_SECRET`: A random string for session encryption
-- `OPENAI_REALTIME_API_URL`: URL of your OpenAI-Realtime-API backend
 
-### 4. Start the Development Server
+Start the frontend development server:
 ```bash
 npm run dev
 ```
+
 Visit [http://localhost:3000](http://localhost:3000) to view the app.
 
 ---
 
-## 🔐 Authentication
-- Uses NextAuth.js for secure authentication
-- Supports user registration, login, and session management
-- Protects sensitive routes like the dashboard and AI setup
+## 🤖 Architecture & Integration
 
----
-
-## 🤖 AI Agent & Backend Integration
-- The "Setup AI" page lets you define your business's system prompt and agent script
-- On save, these are sent via API to the OpenAI-Realtime-API backend (`/system-message` endpoint)
-- All real-time voice/chat operations use the latest prompt from the backend
-
----
-
-## 📁 Project Structure
-- `/src/app` — Next.js app directory (pages, API routes)
-- `/src/components` — Reusable UI components
-- `/src/models` — Mongoose models (User, etc.)
-- `/src/lib` — Utility libraries (MongoDB connection)
-- `/src/hooks` — Custom React hooks
-- `/public` — Static assets
-
----
-
-## 🧪 Testing & Usage
-- Register a new account and log in
-- Use the dashboard to view your profile and AI number
-- Go to "Setup AI" to configure your agent's behavior
-- The backend will immediately use your updated prompt for all calls
+- **Frontend Configuration:** The "Setup AI" page on the VocaAI website lets users define their business's system prompt and agent script.
+- **Backend Sync:** Upon saving, the frontend sends the configuration to the backend's `/system-message` endpoint.
+- **Call Handling:** When a call comes in via Twilio, the backend uses the latest synchronized prompt to drive the real-time interaction via the OpenAI Realtime API.
 
 ---
 
 ## 🚀 Deployment
-- Deploy to Vercel, Netlify, or your preferred Node.js host
-- Set all environment variables in your deployment dashboard
-- Make sure the OpenAI-Realtime-API backend is also deployed and accessible
+
+- **Frontend:** Can be easily deployed to Vercel, Netlify, or any preferred Node.js host. Ensure environment variables (MongoDB URI, Auth Secret, Backend URL) are set.
+- **Backend:** Can be deployed on any Node.js-compatible server or cloud platform. Expose the correct port and secure the API endpoints.
+
+Ensure that the deployed frontend URL (`NEXTAUTH_URL`) and backend URL (`OPENAI_REALTIME_API_URL`) are correctly mapped in your production environment.
 
 ---
 
 ## 🤝 Credits
-- Built by Dilpreet Singh
-- Powered by Next.js, OpenAI, MongoDB, and Tailwind CSS
+
+- Powered by Next.js, Node.js, Fastify, OpenAI, MongoDB, Twilio, and Tailwind CSS.
 
 ---
 
 ## 📄 License
+
 ISC
 
 ---
 
-**Note:** For production, ensure all secrets are strong, HTTPS is enabled, and backend URLs are correctly set.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load custom fonts.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Note:** For production, ensure all secrets are strong, HTTPS is enabled, robust error handling is implemented, and backend URLs are correctly secured.
